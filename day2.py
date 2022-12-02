@@ -8,6 +8,18 @@ class RockPaperScissors(Enum):
     PAPER = 1
     SCISSORS = 2
 
+    @classmethod
+    def from_letter(cls, letter):
+        match letter:
+            case "A" | "X":
+                return cls.ROCK
+            case "B" | "Y":
+                return cls.PAPER
+            case "C" | "Z":
+                return cls.SCISSORS
+            case _:
+                raise SyntaxError("unexpected input")
+
     def compare(self, other):
         return (self.value - other.value) % 3
 
@@ -24,9 +36,9 @@ class RockPaperScissors(Enum):
 class ParseInput:
     def __init__(self, input_line):
         self.inputs = input_line.split()
-        self.them = self.parse_to_rps(self.inputs[0])
+        self.them = RockPaperScissors.from_letter(self.inputs[0])
         # part 1
-        # self.us = self.parse_to_rps(self.inputs[1])
+        self.us = RockPaperScissors.from_letter(self.inputs[1])
         # part 2
         self.us = self.pick_rps()
 
@@ -37,18 +49,6 @@ class ParseInput:
         elif self.us == self.them:
             score += 3
         return score
-
-    @staticmethod
-    def parse_to_rps(letter):
-        match letter:
-            case "A" | "X":
-                return RockPaperScissors.ROCK
-            case "B" | "Y":
-                return RockPaperScissors.PAPER
-            case "C" | "Z":
-                return RockPaperScissors.SCISSORS
-            case _:
-                raise SyntaxError("unexpected input")
 
     def pick_rps(self):
         match self.inputs[1]:
