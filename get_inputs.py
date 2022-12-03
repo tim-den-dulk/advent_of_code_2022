@@ -6,7 +6,7 @@ from pathlib import Path
 class GetInputs:
     def __init__(self, day):
         self.day = day
-        self.filepath = Path(f"day/day{day}.txt")
+        self.filepath = Path(f"inputs/day{day}.txt")
 
     def lines(self):
         if not os.path.exists(self.filepath):
@@ -27,7 +27,7 @@ class GetInputs:
         raise NotImplementedError("please download manually")
         # os.makedirs(self.filepath.parent, exist_ok=True)
         # session = requests.Session()
-        # url = f"https://adventofcode.com/2021/day/{self.day}/input"
+        # url = f"https://adventofcode.com/2021/day/{self.inputs}/input"
         # text = session.get(url).text
         # with open(self.filepath, "w") as file:
         #     file.write(text)
