@@ -27,5 +27,6 @@ for line in data:
             total_part2 += 1
 
 print(total)
+
 print(total_part2)
 
