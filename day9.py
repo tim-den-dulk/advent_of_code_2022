@@ -40,7 +40,6 @@ for line in data:
 print(len(positions))
 
 # part 2
-
 positions = {(0, 0)}
 pos_snake = np.array(
     [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
