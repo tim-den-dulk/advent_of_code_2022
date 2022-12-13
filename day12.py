@@ -9,12 +9,10 @@ distance = np.full(np.shape(data_np),np.inf)
 visited = np.zeros(np.shape(data_np))
 dataset = np.stack((data_np,distance,visited,distance))
 
-# unvisited = []
-# for i in range(np.shape(data_np)[0]):
-#     for j in range(np.shape(data_np)[0]):
-#         unvisited.append((i,j))
 start = tuple(np.argwhere(dataset[0]==30)[0])
+end = tuple(np.argwhere(dataset[0]==27)[0])
 dataset[0][start] = 1
+dataset[0][end] = 26
 dataset[1][start] = 0
 
 moveset = [(0,1),(0,-1),(1,0),(-1,0)]
@@ -25,7 +23,7 @@ while True:
         cur_node = start
         first_iteration=1
     print(cur_node)
-    if dataset[0][cur_node] == 27:
+    if cur_node == end:
         break
     for direction in moveset:
         visiting = cur_node[0]+direction[0],cur_node[1]+direction[1]
@@ -35,4 +33,4 @@ while True:
                 dataset[3][visiting]=dataset[1][visiting]
     dataset[2][cur_node]=1
     dataset[3][cur_node]=np.inf
-print(dataset[1][tuple(np.argwhere(dataset[0]==27)[0])])
+print(dataset[1][end])
